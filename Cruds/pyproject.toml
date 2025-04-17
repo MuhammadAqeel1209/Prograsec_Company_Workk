@@ -1,0 +1,14 @@
+[project]
+name = "cruds"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[all]>=0.115.12",
+    "pydantic>=2.11.3",
+    "pymysql>=1.1.1",
+    "python-dotenv>=1.1.0",
+    "sqlalchemy>=2.0.40",
+    "uvicorn>=0.34.1",
+]
