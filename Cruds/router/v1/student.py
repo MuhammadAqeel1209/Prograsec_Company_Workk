@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from schemas.student_schemas import StudentBase, StudentOut
+from schemas.student_schemas import StudentBase, StudentOut,EmailLogin,TokenResponse
 from services.student_service import StudentService
 from config.database import get_db
 from sqlalchemy.orm import Session
@@ -8,7 +8,6 @@ from pydantic import EmailStr
 
 router = APIRouter(prefix="/student", tags=["Student"])
 def get_student_service(db: Session = Depends(get_db)) -> StudentService:
-    
     return StudentService(db)
 
 @router.get("/", response_model=list[StudentOut], status_code=status.HTTP_200_OK)
@@ -22,7 +21,7 @@ def get_student(student_id: int, service: StudentService = Depends(get_student_s
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Student not found")
     return student
 
-@router.post("/", response_model=StudentOut, status_code=status.HTTP_201_CREATED)
+@router.post("/register", response_model=StudentOut, status_code=status.HTTP_201_CREATED)
 def create_student(student: StudentBase, service: StudentService = Depends(get_student_service)):
     created = service.create_student_services(student)
     if not created:
@@ -43,3 +42,11 @@ def delete_student(student_email: EmailStr, service: StudentService = Depends(ge
     if not deleted:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Student not found")
     return {"message": "Student deleted successfully"}
+
+# @router.post("/register", response_model=StudentOut)
+# def register_student(student: StudentBase, service: StudentService = Depends(get_student_service)):
+#     return service.create_student_services(student)
+
+@router.post("/login", response_model=TokenResponse)
+def login_student(login: EmailLogin, service: StudentService = Depends(get_student_service)):
+    return service.authenticate_student(login)

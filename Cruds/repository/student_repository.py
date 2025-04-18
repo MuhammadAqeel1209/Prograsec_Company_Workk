@@ -4,6 +4,7 @@ from models.students import Student
 from models.department import Department
 from schemas.student_schemas import StudentBase
 from fastapi import HTTPException, status
+from utills.auth import hash_password
 
 class StudentRepository:
     def __init__(self, db: Session):
@@ -19,7 +20,7 @@ class StudentRepository:
         return self.db.query(Student).filter(Student.email == email).first()
 
     def create_user_repository(self, student: StudentBase):
-        # Check if department exists
+        hash_pass = hash_password(student.password)
         department = self.db.query(Department).filter(Department.id == student.department_id).first()
         if not department:
             raise HTTPException(
@@ -31,7 +32,8 @@ class StudentRepository:
             name=student.name,
             student_class=student.student_class,
             email=student.email,
-            department_id=student.department_id
+            department_id=student.department_id,
+            password = hash_pass
         )
         self.db.add(db_student)
         self.db.commit()
