@@ -1,10 +1,7 @@
 from fastapi import FastAPI
-from config.database import Base, engine
 from router import api
 from utills.init_db import create_tables
 
-# Create database tables
-Base.metadata.create_all(bind=engine)
 
 # Initialize FastAPI app
 app = FastAPI(

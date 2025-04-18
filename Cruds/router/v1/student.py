@@ -7,9 +7,10 @@ from pydantic import EmailStr
 
 
 router = APIRouter(prefix="/student", tags=["Student"])
-
 def get_student_service(db: Session = Depends(get_db)) -> StudentService:
+    
     return StudentService(db)
+
 @router.get("/", response_model=list[StudentOut], status_code=status.HTTP_200_OK)
 def get_students(service: StudentService = Depends(get_student_service)):
     return service.get_students_services()
