@@ -1,6 +1,13 @@
 {
     "cSpell.words": [
+        "DATABASEURL",
         "depratment",
-        "depratments"
+        "depratments",
+        "dotenv",
+        "fastapi",
+        "LANGCHAIN",
+        "llms",
+        "Ollama",
+        "pymysql"
     ]
 }
