@@ -5,9 +5,16 @@
         "depratments",
         "dotenv",
         "fastapi",
+        "Gdyb",
+        "genai",
+        "groq",
+        "huggingface",
+        "Iryhij",
         "LANGCHAIN",
         "llms",
         "Ollama",
-        "pymysql"
+        "Pjwtdjg",
+        "pymysql",
+        "SBHF"
     ]
 }

@@ -6,4 +6,7 @@
 6. LangSmith
 7. LangChain_Openai <=>LangChain_groq<=>langchain-google-genai<=>langchain-anthropic
 
-
+1. Models in langchain 
+Openai groq Claude gemini huggingface 
+2. Prompts in Langchain 
+3. What is the difference b/w OpenAI and ChatOpenAI
