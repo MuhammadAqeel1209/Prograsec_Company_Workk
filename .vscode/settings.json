@@ -6,6 +6,7 @@
         "dotenv",
         "fastapi",
         "Gdyb",
+        "Geimini",
         "genai",
         "groq",
         "huggingface",
